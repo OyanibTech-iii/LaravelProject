@@ -6,7 +6,7 @@
         <title>IcedCoffee | Artisan Specialty Coffee</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="bg-cream text-navy font-sans antialiased">
@@ -21,7 +21,6 @@
                     <div class="hidden md:flex items-center gap-8">
                         <a href="#menu" class="font-medium hover:text-brick transition-colors">Menu</a>
                         <a href="#about" class="font-medium hover:text-brick transition-colors">About</a>
-                        <a href="/query-lab" class="font-bold text-brick hover:text-navy transition-colors">DBMS Lab</a>
                         <div class="flex items-center gap-4 ml-4">
                             <a href="/login" class="font-bold text-navy hover:text-brick transition-colors">Log in</a>
                             <a href="/register" class="bg-brick text-white px-6 py-2.5 rounded-full font-bold hover:bg-coffee-700 transition-all shadow-lg shadow-brick/20">Register</a>
@@ -93,7 +92,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col lg:flex-row items-center gap-16">
                     <div class="lg:w-1/2">
-                        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="Latte Art" class="rounded-3xl shadow-2xl">
+                        <img src="assets/images/banner2.jfif" alt="Latte Art" class="rounded-2xl">
                     </div>
                     <div class="lg:w-1/2">
                         <h2 class="text-4xl font-bold mb-6">Our Passion for the Bean</h2>
@@ -138,16 +137,31 @@
         {{-- Menu Section --}}
         <section id="menu" class="py-24 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-4xl font-bold mb-4">Our Signature Menu</h2>
-                <p class="text-navy/60 max-w-2xl mx-auto mb-16">Carefully curated selection of beverages and artisanal snacks.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-10 text-left">
+                <h2 class="text-xl font-bold text-brick mb-4 uppercase tracking-[0.2em]">Our Signature Menu</h2>
+                <p class="text-sm text-navy/60 max-w-2xl mx-auto mb-16">Carefully curated selection of beverages and artisanal snacks, crafted with the finest ingredients.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 text-left">
                     @foreach($products as $product)
-                    <div class="flex justify-between items-end border-b border-dotted border-navy/20 pb-4">
-                        <div>
-                            <h4 class="text-xl font-bold">{{ $product->name }}</h4>
-                            <p class="text-navy/60 italic text-sm">{{ $product->description }}</p>
+                    <div class="group">
+                        <div class="relative overflow-hidden rounded-[32px] aspect-square mb-6">
+                            @if($product->image_path)
+                                <img src="{{ asset($product->image_path) }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            @else
+                                <div class="w-full h-full bg-cream flex items-center justify-center">
+                                    <span class="text-brick font-bold">IcedCoffee</span>
+                                </div>
+                            @endif
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
+                                <button class="bg-white text-navy px-6 py-2 rounded-full font-bold text-sm shadow-xl">Order Now</button>
+                            </div>
                         </div>
-                        <span class="text-brick font-bold text-xl">₱{{ number_format($product->price, 0) }}</span>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="text-sm font-bold text-navy group-hover:text-brick transition-colors duration-300">{{ $product->name }}</h4>
+                                <p class="text-xs text-navy/50 italic mt-1">{{ $product->description }}</p>
+                            </div>
+                            <span class="text-brick font-black text-sm ml-4">₱{{ number_format($product->price, 0) }}</span>
+                        </div>
                     </div>
                     @endforeach
                 </div>

@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\DB;
 
 class QueryLabController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $activeIndex = (int) $request->query('scenario', 0);
+        
         // 1. Selection with AND, OR, NOT & Projection
         $scenario1 = [
             'title' => 'Selection & Projection',
@@ -47,6 +49,6 @@ class QueryLabController extends Controller
 
         $scenarios = [$scenario1, $scenario2, $scenario3, $scenario4];
 
-        return view('query-lab', compact('scenarios'));
+        return view('query-lab', compact('scenarios', 'activeIndex'));
     }
 }

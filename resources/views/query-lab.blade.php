@@ -1,92 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DBMS 2 | Query & Relational Algebra Lab</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-gray-50 font-sans antialiased text-gray-900">
-    <nav class="bg-navy text-white py-6 shadow-xl">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            <h1 class="text-2xl font-bold tracking-tight">IcedCoffee DBMS Lab</h1>
-            <a href="/" class="text-white/70 hover:text-white transition-colors">Back to Landing Page</a>
-        </div>
-    </nav>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-bold text-xl text-navy leading-tight">
+            {{ __('DBMS Lab: Relational Query Demonstration') }}
+        </h2>
+    </x-slot>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <header class="mb-12">
-            <h2 class="text-4xl font-extrabold text-navy mb-4">Relational Query Demonstration</h2>
-            <p class="text-xl text-gray-600">Mapping SQL scenarios to Relational Algebra for the Final Project.</p>
-        </header>
+    <div class="py-12" x-init="
+        Alpine.store('lab', {
+            activeIndex: {{ $activeIndex }},
+            scenarios: {{ json_encode($scenarios) }},
+            get activeScenario() {
+                return this.scenarios[this.activeIndex];
+            }
+        })
+    ">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <template x-if="$store.lab.activeScenario">
+                <section class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden animate-fadeIn">
+                    <div class="p-8 md:p-12">
+                        <div class="flex items-center gap-4 mb-6">
+                            <span class="w-12 h-12 bg-brick text-white rounded-2xl flex items-center justify-center font-bold text-xl shadow-lg shadow-brick/20" x-text="$store.lab.activeIndex + 1"></span>
+                            <h3 class="text-2xl font-black text-navy" x-text="$store.lab.activeScenario.title"></h3>
+                        </div>
+                        
+                        <p class="text-base text-gray-600 mb-10 leading-relaxed" x-text="$store.lab.activeScenario.description"></p>
 
-        <div class="space-y-16">
-            @foreach($scenarios as $index => $scenario)
-            <section class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
-                <div class="p-8 md:p-12">
-                    <div class="flex items-center gap-4 mb-6">
-                        <span class="w-12 h-12 bg-brick text-white rounded-full flex items-center justify-center font-bold text-xl">{{ $index + 1 }}</span>
-                        <h3 class="text-3xl font-bold text-navy">{{ $scenario['title'] }}</h3>
-                    </div>
-                    
-                    <p class="text-lg text-gray-600 mb-8">{{ $scenario['description'] }}</p>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                        <div class="space-y-4">
-                            <h4 class="font-bold text-brick uppercase tracking-wider text-sm">SQL Query</h4>
-                            <div class="bg-navy rounded-xl p-6 overflow-x-auto">
-                                <code class="text-blue-300 font-mono">{{ $scenario['sql'] }}</code>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-1 h-4 bg-brick rounded-full"></div>
+                                    <h4 class="font-bold text-navy uppercase tracking-widest text-xs">SQL Query</h4>
+                                </div>
+                                <div class="bg-navy rounded-2xl p-6 overflow-x-auto shadow-inner">
+                                    <code class="text-blue-300 font-mono text-sm leading-6" x-text="$store.lab.activeScenario.sql"></code>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-1 h-4 bg-brick rounded-full"></div>
+                                    <h4 class="font-bold text-navy uppercase tracking-widest text-xs">Relational Algebra</h4>
+                                </div>
+                                <div class="bg-cream border border-brick/10 rounded-2xl p-6 overflow-x-auto shadow-inner">
+                                    <code class="text-navy font-mono text-sm font-bold leading-6" x-text="$store.lab.activeScenario.algebra"></code>
+                                </div>
                             </div>
                         </div>
+
                         <div class="space-y-4">
-                            <h4 class="font-bold text-brick uppercase tracking-wider text-sm">Relational Algebra</h4>
-                            <div class="bg-cream border border-brick/20 rounded-xl p-6 overflow-x-auto">
-                                <code class="text-navy font-mono text-lg font-bold">{{ $scenario['algebra'] }}</code>
+                            <div class="flex items-center gap-2">
+                                <div class="w-1 h-4 bg-brick rounded-full"></div>
+                                <h4 class="font-bold text-navy uppercase tracking-widest text-xs">Execution Results</h4>
+                            </div>
+                            <div class="bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                                <div class="overflow-x-auto">
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <thead class="bg-gray-100/50">
+                                            <tr>
+                                                <template x-for="(value, key) in ($store.lab.activeScenario.results[0] || {Status: ''})">
+                                                    <th class="px-6 py-4 text-left text-xs font-bold text-navy uppercase tracking-wider" x-text="key"></th>
+                                                </template>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="bg-white divide-y divide-gray-100">
+                                            <template x-for="row in $store.lab.activeScenario.results">
+                                                <tr class="hover:bg-gray-50/50 transition-colors">
+                                                    <template x-for="value in row">
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-medium" x-text="value"></td>
+                                                    </template>
+                                                </tr>
+                                            </template>
+                                            <template x-if="$store.lab.activeScenario.results.length === 0">
+                                                <tr>
+                                                    <td class="px-6 py-12 text-center text-sm text-gray-400 italic">No records found.</td>
+                                                </tr>
+                                            </template>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="space-y-4">
-                        <h4 class="font-bold text-brick uppercase tracking-wider text-sm">Execution Results</h4>
-                        <div class="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-100">
-                                    <tr>
-                                        @if(count($scenario['results']) > 0)
-                                            @foreach(get_object_vars($scenario['results'][0]) as $key => $value)
-                                            <th class="px-6 py-4 text-left text-xs font-bold text-navy uppercase tracking-wider">{{ $key }}</th>
-                                            @endforeach
-                                        @else
-                                            <th class="px-6 py-4 text-left text-xs font-bold text-navy uppercase tracking-wider">Status</th>
-                                        @endif
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-gray-200">
-                                    @forelse($scenario['results'] as $row)
-                                    <tr>
-                                        @foreach(get_object_vars($row) as $value)
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $value }}</td>
-                                        @endforeach
-                                    </tr>
-                                    @empty
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400 italic">No records found.</td>
-                                    </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            @endforeach
+                </section>
+            </template>
         </div>
-    </main>
+    </div>
 
-    <footer class="bg-white border-t border-gray-200 py-12 mt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400 text-sm">
-            &copy; {{ date('Y') }} IcedCoffee DBMS Management System. All rights reserved.
-        </div>
-    </footer>
-</body>
-</html>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+    </style>
+</x-app-layout>

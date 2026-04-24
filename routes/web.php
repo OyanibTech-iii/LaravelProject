@@ -8,11 +8,37 @@ Route::get('/', function () {
     return view('coffee', compact('products'));
 });
 
-Route::get('/query-lab', [\App\Http\Controllers\QueryLabController::class, 'index'])->name('query-lab');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        // 7-day Sales Trend
+        $salesData = \App\Models\Order::select(
+            \DB::raw('DATE(order_date) as date'),
+            \DB::raw('SUM(total_amount) as total')
+        )
+        ->where('order_date', '>=', now()->subDays(7))
+        ->groupBy('date')
+        ->orderBy('date')
+        ->get();
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+        // Sales by Category
+        $categoryData = \App\Models\OrderItem::join('products', 'order_items.product_id', '=', 'products.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->select('categories.name', \DB::raw('SUM(order_items.subtotal) as total'))
+            ->groupBy('categories.name')
+            ->get();
+
+        $stats = [
+            'total_sales' => \App\Models\Order::sum('total_amount'),
+            'total_orders' => \App\Models\Order::count(),
+            'total_customers' => \App\Models\Customer::count(),
+            'total_products' => \App\Models\Product::count(),
+        ];
+
+        return view('dashboard', compact('salesData', 'categoryData', 'stats'));
+    })->name('dashboard');
+
+    Route::get('/query-lab', [\App\Http\Controllers\QueryLabController::class, 'index'])->name('query-lab');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

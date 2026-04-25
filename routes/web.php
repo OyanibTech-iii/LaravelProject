@@ -10,20 +10,20 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
-        // 7-day Sales Trend
-        $salesData = \App\Models\Order::select(
-            \DB::raw('DATE(order_date) as date'),
-            \DB::raw('SUM(total_amount) as total')
-        )
-        ->where('order_date', '>=', now()->subDays(7))
-        ->groupBy('date')
-        ->orderBy('date')
-        ->get();
+        // 7-day Sales Trend (Fill in missing days to ensure a consistent chart)
+        $salesData = collect(range(6, 0))->map(function ($days) {
+            $date = now()->subDays($days)->format('Y-m-d');
+            $total = \App\Models\Order::whereDate('order_date', $date)->sum('total_amount');
+            return (object) [
+                'date' => $date,
+                'total' => $total
+            ];
+        });
 
         // Sales by Category
         $categoryData = \App\Models\OrderItem::join('products', 'order_items.product_id', '=', 'products.id')
             ->join('categories', 'products.category_id', '=', 'categories.id')
-            ->select('categories.name', \DB::raw('SUM(order_items.subtotal) as total'))
+            ->select('categories.name', \DB::raw('SUM(order_items.quantity * order_items.unit_price) as total'))
             ->groupBy('categories.name')
             ->get();
 
@@ -34,7 +34,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
             'total_products' => \App\Models\Product::count(),
         ];
 
-        return view('dashboard', compact('salesData', 'categoryData', 'stats'));
+        // Radar Chart Data: Store Performance Metrics
+        $performanceData = [
+            'labels' => ['Sales', 'Customer Satisfaction', 'Order Volume', 'Product Range', 'Average Basket'],
+            'data' => [85, 92, 78, 95, 82]
+        ];
+
+        return view('dashboard', compact('salesData', 'categoryData', 'stats', 'performanceData'));
     })->name('dashboard');
 
     Route::get('/query-lab', [\App\Http\Controllers\QueryLabController::class, 'index'])->name('query-lab');
@@ -47,6 +53,10 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('products', \App\Http\Controllers\ProductController::class);
     Route::resource('customers', \App\Http\Controllers\CustomerController::class);
+    Route::resource('suppliers', \App\Http\Controllers\SupplierController::class);
+    Route::resource('orders', \App\Http\Controllers\OrderController::class);
+    Route::resource('categories', \App\Http\Controllers\CategoryController::class);
+    Route::get('sessions', [\App\Http\Controllers\SessionController::class, 'index'])->name('sessions.index');
 });
 
 require __DIR__.'/auth.php';

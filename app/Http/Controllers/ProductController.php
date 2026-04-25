@@ -19,34 +19,34 @@ class ProductController extends Controller
                     $description = \Illuminate\Support\Str::limit($row->description, 30);
                     return '
                         <div class="flex items-center">
-                            <div class="flex-shrink-0 h-10 w-10 bg-cream rounded-lg flex items-center justify-center text-brick font-bold text-sm">
+                            <div class="flex-shrink-0 h-8 w-8 bg-cream rounded-lg flex items-center justify-center text-brick font-bold text-xs">
                                 ' . $initial . '
                             </div>
                             <div class="ml-4">
-                                <div class="text-sm font-bold text-navy">' . $row->name . '</div>
-                                <div class="text-xs text-gray-400">' . $description . '</div>
+                                <div class="text-xs font-bold text-navy">' . $row->name . '</div>
+                                <div class="text-[10px] text-gray-400">' . $description . '</div>
                             </div>
                         </div>';
                 })
                 ->addColumn('category', function ($row) {
                     return '
-                        <span class="px-3 py-1 text-xs font-bold rounded-full bg-navy/5 text-navy">
+                        <span class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-navy/5 text-navy">
                             ' . $row->category->name . '
                         </span>';
                 })
                 ->addColumn('price_formatted', function ($row) {
-                    return '₱' . number_format($row->price, 2);
+                    return '<span class="text-xs text-gray-600 font-medium">₱' . number_format($row->price, 2) . '</span>';
                 })
                 ->addColumn('stock', function ($row) {
                     $color = $row->stock_quantity > 10 ? 'bg-green-500' : 'bg-red-500';
                     return '
                         <div class="flex items-center gap-2">
-                            <div class="w-2 h-2 rounded-full ' . $color . '"></div>
-                            <span class="text-sm font-medium text-gray-600">' . $row->stock_quantity . ' units</span>
+                            <div class="w-1.5 h-1.5 rounded-full ' . $color . '"></div>
+                            <span class="text-xs font-medium text-gray-600">' . $row->stock_quantity . ' units</span>
                         </div>';
                 })
                 ->addColumn('supplier_name', function ($row) {
-                    return $row->supplier->name;
+                    return '<span class="text-xs text-gray-600">' . $row->supplier->name . '</span>';
                 })
                 ->addColumn('action', function ($row) {
                     $editUrl = route('products.edit', $row->id);
@@ -54,18 +54,18 @@ class ProductController extends Controller
                     $csrf = csrf_field();
                     $method = method_field('DELETE');
                     return '
-                        <div class="flex justify-end gap-4">
+                        <div class="flex items-center justify-end gap-4">
                             <a href="' . $editUrl . '" 
                                @click.prevent="loadPage($el.href)"
-                               class="text-brick hover:text-navy transition-colors font-bold">Edit</a>
-                            <form action="' . $deleteUrl . '" method="POST" class="inline">
+                               class="text-brick hover:text-navy transition-colors font-bold text-xs">Edit</a>
+                            <form action="' . $deleteUrl . '" method="POST" class="flex items-center">
                                 ' . $csrf . '
                                 ' . $method . '
-                                <button type="submit" class="text-red-500 hover:text-red-700 transition-colors font-bold" onclick="return confirm(\'Are you sure you want to delete this product?\')">Delete</button>
+                                <button type="submit" class="text-red-500 hover:text-red-700 transition-colors font-bold text-xs" onclick="return confirm(\'Are you sure you want to delete this product?\')">Delete</button>
                             </form>
                         </div>';
                 })
-                ->rawColumns(['product', 'category', 'stock', 'action'])
+                ->rawColumns(['product', 'category', 'price_formatted', 'stock', 'supplier_name', 'action'])
                 ->make(true);
         }
 

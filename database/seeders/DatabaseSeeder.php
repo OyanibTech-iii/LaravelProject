@@ -87,7 +87,6 @@ class DatabaseSeeder extends Seeder
             'product_id' => $product1->id,
             'quantity' => 1,
             'unit_price' => 145.00,
-            'subtotal' => 145.00,
         ]);
     }
 }

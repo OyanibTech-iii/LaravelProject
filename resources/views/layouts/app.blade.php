@@ -20,7 +20,9 @@
         activeUrl: window.location.href,
         loading: false,
         showLogoutModal: false,
+        sidebarOpen: false,
         async loadPage(url, pushState = true) {
+            this.sidebarOpen = false;
             if (url === this.activeUrl && pushState) return;
             this.loading = true;
             try {
@@ -122,13 +124,27 @@
         </div>
 
         <div class="min-h-screen bg-gray-100">
+            <!-- Sidebar Mobile Backdrop -->
+            <div x-show="sidebarOpen" 
+                 class="fixed inset-0 z-40 bg-navy/60 backdrop-blur-sm md:hidden transition-opacity"
+                 @click="sidebarOpen = false"
+                 x-cloak></div>
+
             <!-- Sidebar -->
-            <aside class="fixed inset-y-0 left-0 z-50 w-64 bg-navy text-white hidden md:flex flex-col overflow-y-auto shadow-2xl">
+            <aside class="fixed inset-y-0 left-0 z-50 w-64 bg-navy text-white flex flex-col overflow-y-auto shadow-2xl transition-transform duration-300 md:translate-x-0"
+                   :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'">
                 <div class="p-6">
-                    <a href="{{ route('dashboard') }}" class="flex items-center gap-3 mb-10 group">
-                        <img src="{{ asset('assets/images/inverted.png') }}" alt="IcedCoffee Logo" class="h-10 w-auto object-contain transition-transform group-hover:scale-110">
-                        <span class="text-xl font-bold tracking-tight text-white">IcedCoffee</span>
-                    </a>
+                    <div class="flex items-center justify-between mb-10">
+                        <a href="{{ route('dashboard') }}" class="flex items-center gap-3 group">
+                            <img src="{{ asset('assets/images/inverted.png') }}" alt="IcedCoffee Logo" class="h-10 w-auto object-contain transition-transform group-hover:scale-110">
+                            <span class="text-xl font-bold tracking-tight text-white">IcedCoffee</span>
+                        </a>
+                        <button @click="sidebarOpen = false" class="md:hidden text-white/50 hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
 
                     <nav class="space-y-2">
                         <a href="{{ route('dashboard') }}" 
@@ -255,8 +271,8 @@
                             <img src="{{ asset('assets/images/logotransparent.png') }}" alt="Logo" class="w-8 h-auto object-contain">
                             <span class="text-xl font-bold text-navy tracking-tight">IcedCoffee</span>
                         </div>
-                        <button class="text-navy">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <button @click="sidebarOpen = true" class="text-navy p-2 hover:bg-gray-50 rounded-lg transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                             </svg>
                         </button>

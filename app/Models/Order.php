@@ -8,6 +8,10 @@ class Order extends Model
 {
     protected $fillable = ['customer_id', 'user_id', 'order_date', 'total_amount', 'status'];
 
+    protected $casts = [
+        'order_date' => 'datetime',
+    ];
+
     public function customer()
     {
         return $this->belongsTo(Customer::class);

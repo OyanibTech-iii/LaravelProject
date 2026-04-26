@@ -54,3 +54,7 @@ table.dataTable thead th {
 .animate-float {
     animation: float 5s ease-in-out infinite;
 }
+
+[x-cloak] { 
+    display: none !important; 
+}

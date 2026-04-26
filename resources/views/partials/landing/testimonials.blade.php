@@ -1,11 +1,6 @@
 {{-- Testimonials Section --}}
 <section id="testimonials" class="py-32 bg-white overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
-        <div class="mb-6 reveal">
-            <svg class="w-16 h-16 text-brick/20 mx-auto" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C15.4647 8 15.017 8.44772 15.017 9V12C15.017 12.5523 14.5693 13 14.017 13H11.017V21H14.017ZM5.01705 21L5.01705 18C5.01705 16.8954 5.91243 16 7.01705 16H10.0171C10.5693 16 11.0171 15.5523 11.0171 15V9C11.0171 8.44772 10.5693 8 10.0171 8H7.01705C6.46477 8 6.01705 8.44772 6.01705 9V12C6.01705 12.5523 5.56933 13 5.01705 13H2.01705V21H5.01705Z" />
-            </svg>
-        </div>
         <h2 class="text-xl font-bold text-brick mb-4 uppercase tracking-[0.2em] reveal">Testimonials</h2>
         <p class="text-4xl md:text-5xl font-extrabold text-navy tracking-tight reveal reveal-delay-1">Voices of Our Coffee Community</p>
     </div>

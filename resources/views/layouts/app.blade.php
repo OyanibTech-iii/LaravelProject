@@ -23,6 +23,7 @@
         sidebarOpen: false,
         async loadPage(url, pushState = true) {
             this.sidebarOpen = false;
+            this.showLogoutModal = false;
             if (url === this.activeUrl && pushState) return;
             this.loading = true;
             try {
@@ -112,8 +113,18 @@
                     }
                 };
             });
+        },
+        init() {
+            this.showLogoutModal = false;
+            this.sidebarOpen = false;
+            this.bindForms();
+            
+            setTimeout(() => {
+                this.showLogoutModal = false;
+                this.sidebarOpen = false;
+            }, 100);
         }
-    }" @popstate.window="loadPage(window.location.href, false)" x-init="bindForms()">
+    }" @popstate.window="loadPage(window.location.href, false)" x-init="init()">
         <!-- Loading Bar -->
         <div x-show="loading" 
              x-transition:enter="transition ease-out duration-300"
@@ -253,7 +264,7 @@
                 <div class="mt-auto p-6 border-t border-white/10">
                     <form method="POST" action="{{ route('logout') }}" id="logout-form">
                         @csrf
-                        <button type="button" @click="showLogoutModal = true" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-red-500/20 text-red-400 transition-colors text-sm">
+                        <button type="button" @click.stop="showLogoutModal = true" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-red-500/20 text-red-400 transition-colors text-sm">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                             </svg>
@@ -297,6 +308,7 @@
 
         <!-- Logout Confirmation Modal -->
         <div x-show="showLogoutModal" 
+             @keydown.escape.window="showLogoutModal = false"
              class="fixed inset-0 z-[100] overflow-y-auto" 
              aria-labelledby="modal-title" role="dialog" aria-modal="true"
              x-cloak>
@@ -325,19 +337,19 @@
                      class="inline-block align-bottom bg-white rounded-[2.5rem] text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full p-8">
                     
                     <div class="text-center">
-                        <h3 class="text-2xl font-black text-navy mb-2" id="modal-title">Ready to leave?</h3>
-                        <p class="text-gray-500 font-medium mb-10">Are you sure you want to log out of your account? You will need to log back in to access your dashboard.</p>
+                        <h3 class="text-lg font-black text-navy mb-2" id="modal-title">Ready to leave?</h3>
+                        <p class="text-sm text-gray-500 font-medium mb-10">Are you sure you want to log out of your account? You will need to log back in to access your dashboard.</p>
                     </div>
 
                     <div class="flex flex-col sm:flex-row gap-4">
                         <button type="button" 
                                 @click="showLogoutModal = false"
-                                class="flex-1 px-6 py-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-2xl transition-colors">
+                                class="flex-1 px-6 py-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-2xl transition-colors text-xs uppercase tracking-widest">
                             Stay Logged In
                         </button>
                         <button type="button" 
                                 @click="document.getElementById('logout-form').submit()"
-                                class="flex-1 px-6 py-4 bg-red-500 hover:bg-red-600 text-white font-bold rounded-2xl shadow-lg shadow-red-500/30 transition-all">
+                                class="flex-1 px-6 py-4 bg-red-500 hover:bg-red-600 text-white font-bold rounded-2xl shadow-lg shadow-red-500/30 transition-all text-xs uppercase tracking-widest">
                             Yes, Log Out
                         </button>
                     </div>

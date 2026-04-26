@@ -10,14 +10,14 @@
         <!-- Name -->
         <div class="reveal reveal-delay-1">
             <x-input-label for="name" :value="__('Full Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="John Doe" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="Fullname... " />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
         <div class="reveal reveal-delay-2">
             <x-input-label for="email" :value="__('Email Address')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="hello@icedcoffee.com" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="yourworkingemail@gmail.com" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 

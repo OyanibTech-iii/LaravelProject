@@ -17,7 +17,7 @@
         <!-- Email Address -->
         <div class="reveal reveal-delay-1">
             <x-input-label for="email" :value="__('Email Address')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="hello@icedcoffee.com" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="yourworkingemail@gmail.com" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 

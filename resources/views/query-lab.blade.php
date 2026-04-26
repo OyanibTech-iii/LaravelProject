@@ -6,10 +6,12 @@
             </h2>
             <div class="flex bg-gray-100 p-1 rounded-xl w-fit">
                 <a href="{{ route('query-lab', ['tab' => 'queries']) }}" 
+                   @click.prevent="loadPage($el.href)"
                    class="px-4 py-2 rounded-lg text-xs font-bold transition-all {{ $activeTab === 'queries' ? 'bg-white text-brick shadow-sm' : 'text-gray-500 hover:text-navy' }}">
                     Queries & Algebra
                 </a>
                 <a href="{{ route('query-lab', ['tab' => 'normalization']) }}" 
+                   @click.prevent="loadPage($el.href)"
                    class="px-4 py-2 rounded-lg text-xs font-bold transition-all {{ $activeTab === 'normalization' ? 'bg-white text-brick shadow-sm' : 'text-gray-500 hover:text-navy' }}">
                     Normalization Lab
                 </a>

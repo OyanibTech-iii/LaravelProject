@@ -65,39 +65,48 @@
                     {{-- Team Member 1 --}}
                     <div class="group reveal">
                         <div class="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] mb-6 shadow-xl">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" 
-                                 alt="Marcus Chen" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                                <p class="text-white/80 text-sm leading-relaxed">Master Roaster with 15 years of experience in specialty coffee sourcing.</p>
+                            <img src="assets/images/founder.png" 
+                                 class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
+                            {{-- Default Black Gradient --}}
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent transition-opacity duration-500 group-hover:opacity-0"></div>
+                            {{-- Hover Overlay (Brick) --}}
+                            <div class="absolute inset-0 bg-gradient-to-t from-brick/90 via-brick/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                                <p class="text-white text-sm font-medium leading-relaxed">Master Roaster with 15 years of experience in specialty coffee sourcing.</p>
                             </div>
                         </div>
-                        <h4 class="text-2xl font-bold text-navy mb-1">Marcus Chen</h4>
+                        <h4 class="text-2xl font-bold text-navy mb-1">Chen Truno</h4>
                         <p class="text-brick font-bold uppercase tracking-wider text-sm">Founder & Master Roaster</p>
                     </div>
 
                     {{-- Team Member 2 --}}
                     <div class="group reveal reveal-delay-1">
                         <div class="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] mb-6 shadow-xl">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=800&auto=format&fit=crop" 
-                                 alt="Elena Rodriguez" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                                <p class="text-white/80 text-sm leading-relaxed">Award-winning barista trainer specializing in latte art and sensory analysis.</p>
+                            <img src="assets/images/head barista.png" 
+                                 class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
+                            {{-- Default Black Gradient --}}
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent transition-opacity duration-500 group-hover:opacity-0"></div>
+                            {{-- Hover Overlay (Brick) --}}
+                            <div class="absolute inset-0 bg-gradient-to-t from-brick/90 via-brick/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                                <p class="text-white text-sm font-medium leading-relaxed">Award-winning barista trainer specializing in latte art and sensory analysis.</p>
                             </div>
                         </div>
-                        <h4 class="text-2xl font-bold text-navy mb-1">Elena Rodriguez</h4>
+                        <h4 class="text-2xl font-bold text-navy mb-1">Shaina Truno</h4>
                         <p class="text-brick font-bold uppercase tracking-wider text-sm">Head Barista</p>
                     </div>
 
                     {{-- Team Member 3 --}}
                     <div class="group reveal reveal-delay-2">
                         <div class="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] mb-6 shadow-xl">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800&auto=format&fit=crop" 
-                                 alt="David Okoro" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                                <p class="text-white/80 text-sm leading-relaxed">Sustainability expert focused on direct-trade relations and farm partnerships.</p>
+                            <img src="assets/images/sourcing director.png" 
+                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110 ">
+                            {{-- Default Black Gradient --}}
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent transition-opacity duration-500 group-hover:opacity-0"></div>
+                            {{-- Hover Overlay (Brick) --}}
+                            <div class="absolute inset-0 bg-gradient-to-t from-brick/90 via-brick/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                                <p class="text-white text-sm font-medium leading-relaxed">Sustainability expert focused on direct-trade relations and farm partnerships.</p>
                             </div>
                         </div>
-                        <h4 class="text-2xl font-bold text-navy mb-1">David Okoro</h4>
+                        <h4 class="text-2xl font-bold text-navy mb-1">Nashy Onurt</h4>
                         <p class="text-brick font-bold uppercase tracking-wider text-sm">Sourcing Director</p>
                     </div>
                 </div>

@@ -8,34 +8,43 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {{-- Bar Chart: Monthly Sales --}}
-            <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-[3rem] reveal">
-                <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
-                    <span class="w-2 h-2 bg-brick rounded-full"></span>
-                    Monthly Brews Served
-                </h3>
-                <div class="h-[300px] w-full">
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-[3rem] reveal flex flex-col">
+                <div class="flex justify-between items-start mb-6">
+                    <h3 class="text-xl font-bold flex items-center gap-2">
+                        <span class="w-2 h-2 bg-brick rounded-full"></span>
+                        Monthly Brews
+                    </h3>
+                    <span class="text-3xl font-black text-brick">{{ number_format($monthlyBrews->sum('count')) }}</span>
+                </div>
+                <div class="h-[300px] w-full flex-1">
                     <canvas id="barChart"></canvas>
                 </div>
             </div>
 
             {{-- Point Style Chart: Customer Retention --}}
-            <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-[3rem] reveal reveal-delay-1">
-                <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
-                    <span class="w-2 h-2 bg-brick rounded-full"></span>
-                    Community Satisfaction
-                </h3>
-                <div class="h-[300px] w-full">
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-[3rem] reveal reveal-delay-1 flex flex-col">
+                <div class="flex justify-between items-start mb-6">
+                    <h3 class="text-xl font-bold flex items-center gap-2">
+                        <span class="w-2 h-2 bg-brick rounded-full"></span>
+                        Satisfaction
+                    </h3>
+                    <span class="text-3xl font-black text-brick">{{ $satisfactionRate }}%</span>
+                </div>
+                <div class="h-[300px] w-full flex-1">
                     <canvas id="pointChart"></canvas>
                 </div>
             </div>
 
             {{-- Doughnut Chart: Bean Sourcing --}}
-            <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-[3rem] reveal reveal-delay-2">
-                <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
-                    <span class="w-2 h-2 bg-brick rounded-full"></span>
-                    Sourcing Diversity
-                </h3>
-                <div class="h-[300px] w-full">
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-[3rem] reveal reveal-delay-2 flex flex-col">
+                <div class="flex justify-between items-start mb-6">
+                    <h3 class="text-xl font-bold flex items-center gap-2">
+                        <span class="w-2 h-2 bg-brick rounded-full"></span>
+                        Diversity
+                    </h3>
+                    <span class="text-3xl font-black text-brick">{{ $categoryDistribution->count() }} Varieties</span>
+                </div>
+                <div class="h-[300px] w-full flex-1">
                     <canvas id="doughnutChart"></canvas>
                 </div>
             </div>

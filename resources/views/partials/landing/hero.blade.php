@@ -4,7 +4,7 @@
     <div class="absolute top-1/2 left-3/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-coffee-600/20 blur-[100px] rounded-full"></div>
 
     {{-- Floating Iced Coffee --}}
-    <div class="absolute inset-0 z-0 flex items-center justify-end pr-10 md:pr-32 pointer-events-none">
+    <div class="absolute inset-0 z-0 hidden md:flex items-center justify-end pr-10 md:pr-32 pointer-events-none">
         <img src="assets/images/heroimage.png" 
              alt="3D Iced Coffee" 
              class="h-[90vh] md:h-[90vh] object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)] animate-float">

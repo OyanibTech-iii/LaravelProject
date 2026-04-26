@@ -12,8 +12,6 @@
 
     @include('partials.landing.about')
 
-    @include('partials.landing.stats')
-
     @include('partials.landing.menu', ['products' => $products])
 
     @include('partials.landing.gallery')

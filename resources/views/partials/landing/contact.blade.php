@@ -13,12 +13,12 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div class="space-y-2">
                                 <label class="text-sm font-bold text-navy/60 uppercase tracking-wider ml-1">Name</label>
-                                <input type="text" placeholder="John Doe" 
+                                <input type="text" placeholder="Fullname" 
                                     class="w-full bg-cream/50 border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-brick/20 transition-all outline-none">
                             </div>
                             <div class="space-y-2">
                                 <label class="text-sm font-bold text-navy/60 uppercase tracking-wider ml-1">Email</label>
-                                <input type="email" placeholder="john@example.com" 
+                                <input type="email" placeholder="working email" 
                                     class="w-full bg-cream/50 border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-brick/20 transition-all outline-none">
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-navy mb-1 text-lg">Contact Us</h4>
-                                <p class="text-navy/60 leading-relaxed">hello@icedcoffee.com<br>+63 912 345 6789</p>
+                                <p class="text-navy/60 leading-relaxed">icedcoffee@gmail.com<br>+63 912 345 6789</p>
                             </div>
                         </div>
                     </div>

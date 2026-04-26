@@ -88,5 +88,9 @@ class DatabaseSeeder extends Seeder
             'quantity' => 1,
             'unit_price' => 145.00,
         ]);
+
+        $this->call([
+            PastrySeeder::class,
+        ]);
     }
 }

@@ -6,36 +6,58 @@
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-4">
+            {{-- Column 1 --}}
             <div class="space-y-4">
                 <div class="relative overflow-hidden rounded-[2rem] shadow-xl reveal group">
                     <img src="{{ asset('assets/images/Matcha.jfif') }}" alt="Matcha" class="w-full object-cover group-hover:scale-110 transition-transform duration-1000">
                 </div>
                 <div class="relative overflow-hidden rounded-[2rem] shadow-xl reveal reveal-delay-1 group">
+                    <img src="{{ asset('assets/images/pastries/cookie.jfif') }}" alt="Signature Cookie" class="w-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                </div>
+                <div class="relative overflow-hidden rounded-[2rem] shadow-xl reveal reveal-delay-2 group">
                     <img src="{{ asset('assets/images/blackberry.jfif') }}" alt="Blackberry" class="w-full object-cover group-hover:scale-110 transition-transform duration-1000">
                 </div>
             </div>
+
+            {{-- Column 2 --}}
             <div class="space-y-4 pt-12">
                 <div class="relative overflow-hidden rounded-[2rem] shadow-xl reveal reveal-delay-2 group">
-                    <img src="{{ asset('assets/images/cold brew.jfif') }}" alt="Cold Brew" class="w-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                    <img src="{{ asset('assets/images/pastries/dunot.jpg') }}" alt="Glazed Donut" class="w-full object-cover group-hover:scale-110 transition-transform duration-1000">
                 </div>
                 <div class="relative overflow-hidden rounded-[2rem] shadow-xl reveal reveal-delay-1 group">
-                    <img src="{{ asset('assets/images/blueberry-slush.jfif') }}" alt="Blueberry Slush" class="w-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                    <img src="{{ asset('assets/images/cold brew.jfif') }}" alt="Cold Brew" class="w-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                </div>
+                <div class="relative overflow-hidden rounded-[2rem] shadow-xl reveal reveal-delay-2 group">
+                    <img src="{{ asset('assets/images/pastries/empanada.jpg') }}" alt="Savory Empanada" class="w-full object-cover group-hover:scale-110 transition-transform duration-1000">
                 </div>
             </div>
+
+            {{-- Column 3 --}}
             <div class="space-y-4">
                 <div class="relative overflow-hidden rounded-[2rem] shadow-xl reveal reveal-delay-3 group">
                     <img src="{{ asset('assets/images/Strawberry Cream Matcha.jfif') }}" alt="Strawberry Matcha" class="w-full object-cover group-hover:scale-110 transition-transform duration-1000">
                 </div>
                 <div class="relative overflow-hidden rounded-[2rem] shadow-xl reveal reveal-delay-2 group">
+                    <img src="{{ asset('assets/images/pastries/sinamond rool.jfif') }}" alt="Cinnamon Roll" class="w-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                </div>
+                <div class="relative overflow-hidden rounded-[2rem] shadow-xl reveal reveal-delay-1 group">
                     <img src="{{ asset('assets/images/expresso.jfif') }}" alt="Expresso" class="w-full object-cover group-hover:scale-110 transition-transform duration-1000">
                 </div>
+                <div class="relative overflow-hidden rounded-[2rem] shadow-xl reveal group">
+                    <img src="{{ asset('assets/images/pastries/yambread.jfif') }}" alt="Yam Bread" class="w-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                </div>
             </div>
+
+            {{-- Column 4 --}}
             <div class="space-y-4 pt-12">
+                <div class="relative overflow-hidden rounded-[2rem] shadow-xl reveal group">
+                    <img src="{{ asset('assets/images/pastries/mushroom.jpg') }}" alt="Mushroom Puff" class="w-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                </div>
+                <div class="relative overflow-hidden rounded-[2rem] shadow-xl reveal reveal-delay-1 group">
+                    <img src="{{ asset('assets/images/pastries/spanish bread.jpg') }}" alt="Spanish Bread" class="w-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                </div>
                 <div class="relative overflow-hidden rounded-[2rem] shadow-xl reveal reveal-delay-1 group">
                     <img src="{{ asset('assets/images/Drink Bubble Tea.jfif') }}" alt="Bubble Tea" class="w-full object-cover group-hover:scale-110 transition-transform duration-1000">
-                </div>
-                <div class="relative overflow-hidden rounded-[2rem] shadow-xl reveal group">
-                    <img src="{{ asset('assets/images/Iced Coffee Drinks With Ice Cubes.jfif') }}" alt="Iced Coffee" class="w-full object-cover group-hover:scale-110 transition-transform duration-1000">
                 </div>
             </div>
         </div>
